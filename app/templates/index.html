@@ -39,14 +39,14 @@
             <div class="card-body">
               <h4 class="card-title">Enter your pincode.</h4>
               <form method="post" action="/">
-                <input type="text" name="pincode" class="form-control" required>
+                <input type="text" name="pincode" class="form-control" placeholder="eg 14226, 14225 ..." required>
                 <br>
                 <button
                   style="background-color: #222831; border-radius: 45px; border-color: #222831;" type="submit"
                   class="btn btn-primary"> Find Restaurants </button>
               </form>
               <div style="margin-top:2%">
-                {% if result|length > 0 %}
+                {% if result is defined and result|length > 0 %}
                 <table class="table table-responsive">
                   <thead>
                     <tr>
@@ -67,6 +67,10 @@
                     {% endfor %}
                   </tbody>
                 </table>
+                {% elif result is defined and result|length == 0 %}
+                <div class="alert alert-danger">
+                  <strong>No results found!</strong>
+                </div>
                 {% endif %}
               </div>
             </div>

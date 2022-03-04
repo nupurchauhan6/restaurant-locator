@@ -3,7 +3,7 @@ services:
     app:
         build: ./app/
         volumes: 
-            - ./app/:/usr/src/app/
+            - ./app/:/app/
         container_name: rl_server1
         # hostname: rl_server1
         ports: 
@@ -16,7 +16,7 @@ services:
     app1:
         build: ./app/
         volumes: 
-            - ./app1/:/usr/src/app/
+            - ./app1/:/app/
         container_name: rl_server2
         # hostname: rl_server2
         ports: 
@@ -29,7 +29,7 @@ services:
     app2:
         build: ./app/
         volumes: 
-            - ./app2/:/usr/src/app/
+            - ./app2/:/app/
         container_name: rl_server3
         # hostname: rl_server3
         ports: 

@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap");
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #0c0c0c;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+.fixed-header {
+  width: 100%;
+  position: fixed;
+  padding: 10px 0;
+  background-color: white;
+  top: 0;
+  z-index: 3;
+}
+
+nav a {
+  text-decoration: none;
+  padding: 20px 25px;
+  display: inline-block;
+  color: black;
+}
+
+nav a:hover {
+  color: #e69c00;
+  text-decoration: none;
+}
+
+.search_section {
+  padding: 100px 0 100px 0;
+  background-color: #ffb30e;
+}
+
+.layout_padding {
+  padding: 90px 0;
+}
+
+h1,
+h2,
+h4 {
+  font-family: "Dancing Script", cursive;
+}
+
+.about_section,
+.about_section .row {
+  background: #222831;
+  color: #ffffff;
+  align-items: center;
+}
+
+.about_section img {
+  width: 70%;
+  max-width: 445px;
+  position: relative;
+  z-index: 2;
+}
+
+.register_section .heading_container {
+  margin-bottom: 25px;
+}
+
+.register_section .form_container .form-control {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 25px;
+}

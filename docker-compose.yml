@@ -1,10 +1,40 @@
-version: "3.9"
-services:
-  web:
-    build: .
-    ports:
-      - "8000:5000"
-    volumes:
-      - .:/app
-    environment:
-      FLASK_ENV: development
+version: '3.8'
+services: 
+    app:
+        build: ./app/
+        volumes: 
+            - ./app/:/usr/src/app/
+        container_name: rl_server1
+        # hostname: rl_server1
+        ports: 
+            - 5001:5001
+        environment: 
+            PORT: 5001
+            FLASK_DEBUG: 1
+            IS_LEADER : "True"
+
+    app1:
+        build: ./app/
+        volumes: 
+            - ./app1/:/usr/src/app/
+        container_name: rl_server2
+        # hostname: rl_server2
+        ports: 
+            - 5002:5002
+        environment: 
+            PORT: 5002
+            FLASK_DEBUG: 1
+            IS_LEADER : "False"
+
+    app2:
+        build: ./app/
+        volumes: 
+            - ./app2/:/usr/src/app/
+        container_name: rl_server3
+        # hostname: rl_server3
+        ports: 
+            - 5003:5003
+        environment: 
+            PORT: 5003
+            FLASK_DEBUG: 1
+            IS_LEADER : "False"

@@ -57,22 +57,5 @@ def add():
 
     return render_template('index.html')
 
-
-# @app.route('/ping')
-# def ping():
-    
-#     data = {
-#             "name": "saj",
-#             "address": "address",
-#             "pincode": "pincode",
-#             "number": "number"
-#         }
-#     if IS_LEADER=="yes":
-#         res=requests.post('http://rl_server3:5003/add',
-#                                   data=data) 
-#         # requests.post('http://rl_server3:5003/add',
-#         #                           data=data)    
-#     return 'Ping ... ' + res.text
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=os.getenv('PORT'))

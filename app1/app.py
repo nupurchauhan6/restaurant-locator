@@ -56,14 +56,5 @@ def add():
     db.session.commit()
     return render_template('index.html')
     
-# @app.route('/pong')
-# def do_pong():
-#     a=False
-#     if IS_LEADER=="yes":
-#         return "false"
-#     # else:
-#     #     return 'Pong'
-#     print("a")
-#     return 'Pong'
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=os.getenv('PORT'))

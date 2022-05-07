@@ -20,7 +20,7 @@ class RaftNode:
         self.committed = False
 
     def getElectionTimeout(self):
-        return random.randint(500, 5000)/1000.0
+        return random.randint(1000, 10000)/1000.0
 
     def getHeartbeatTimeout(self):
         return 0.5

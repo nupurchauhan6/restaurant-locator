@@ -97,6 +97,8 @@ def test_log_replication_shutdown_leader(skt, nodes):
     request(skt, 'CONVERT_FOLLOWER', [temp_leader])
     time.sleep(2)
     testCases[9](skt, nodes, "k3", "Value3")
+    time.sleep(3)
+    testCases[12](skt, nodes)
 
 def get_follower_log(skt, nodes):
     leader_info(skt, nodes)

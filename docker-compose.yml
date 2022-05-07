@@ -11,7 +11,9 @@ services:
             PORT: 5001
             FLASK_DEBUG: 1
             IS_LEADER : "True"
-
+            SENDER_PORT: 5556
+            CONTAINER: rl_server1
+    
     app1:
         build: ./app/
         volumes: 
@@ -23,6 +25,8 @@ services:
             PORT: 5002
             FLASK_DEBUG: 1
             IS_LEADER : "False"
+            SENDER_PORT: 5557
+            CONTAINER: rl_server2
 
     app2:
         build: ./app/
@@ -35,3 +39,68 @@ services:
             PORT: 5003
             FLASK_DEBUG: 1
             IS_LEADER : "False"
+            SENDER_PORT: 5558
+            CONTAINER: rl_server3
+
+    app3:
+        build: ./app/
+        volumes: 
+            - ./app3/:/app/
+        container_name: rl_server4
+        ports: 
+            - 5004:5004
+        environment: 
+            PORT: 5004
+            FLASK_DEBUG: 1
+            IS_LEADER : "False"
+            SENDER_PORT: 5559
+            CONTAINER: rl_server4
+
+    app4:
+        build: ./app/
+        volumes: 
+            - ./app4/:/app/
+        container_name: rl_server5
+        ports: 
+            - 5005:50005
+        environment: 
+            PORT: 5005
+            FLASK_DEBUG: 1
+            IS_LEADER : "False"
+            SENDER_PORT: 5560
+            CONTAINER: rl_server5
+
+    node1:
+        container_name: Node1
+        build: Node/.
+        environment:
+            NODE_NAME: "Node1"
+
+    node2:
+        container_name: Node2
+        build: Node/.
+        environment:
+            NODE_NAME: "Node2"
+
+    node3:
+        container_name: Node3
+        build: Node/.
+        environment:
+            NODE_NAME: "Node3"
+
+    node4:
+        container_name: Node4
+        build: Node/.
+        environment:
+            NODE_NAME: "Node4"
+
+    node5:
+        container_name: Node5
+        build: Node/.
+        environment:
+            NODE_NAME: "Node5"
+
+    # controller:
+    #     container_name: Controller
+    #     build: Controller/.
+    #     stdin_open: true

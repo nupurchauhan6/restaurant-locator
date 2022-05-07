@@ -100,7 +100,7 @@ services:
         environment:
             NODE_NAME: "Node5"
 
-    # controller:
-    #     container_name: Controller
-    #     build: Controller/.
-    #     stdin_open: true
+    controller:
+        container_name: Controller
+        build: Controller/.
+        stdin_open: true

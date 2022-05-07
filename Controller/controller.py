@@ -79,23 +79,23 @@ def test_log_replication_shutdown_follower(skt, nodes):
     time.sleep(3)
     testCases[12](skt, nodes)
     request(skt, 'CONVERT_FOLLOWER', [shutdown_node])
-    time.sleep(5)
+    time.sleep(3)
     testCases[9](skt, nodes, "k3", "Value3")
-    time.sleep(5)
+    time.sleep(3)
     testCases[12](skt, nodes)
     
 def test_log_replication_shutdown_leader(skt, nodes):
     testCases[1](skt, nodes)
-    time.sleep(5)
+    time.sleep(2)
     testCases[9](skt, nodes, "k1", "Value1")
-    time.sleep(3)
+    time.sleep(2)
     temp_leader = leader
     request(skt, 'SHUTDOWN', [temp_leader])
-    time.sleep(3)
+    time.sleep(2)
     testCases[9](skt, nodes, "k2", "Value2")
-    time.sleep(3)
+    time.sleep(2)
     request(skt, 'CONVERT_FOLLOWER', [temp_leader])
-    time.sleep(5)
+    time.sleep(2)
     testCases[9](skt, nodes, "k3", "Value3")
 
 def get_follower_log(skt, nodes):
@@ -163,7 +163,7 @@ def listener(skt):
 
 # Send controller requests
 def request(skt, request_type, nodes, key="", value=""):
-    msg_bytes = create_msg('CONTROLLER', request_type, key, value)
+    msg_bytes = create_msg('Controller', request_type, key, value)
     print(f"Request Created : {msg_bytes}")
 
     try:
@@ -203,4 +203,4 @@ if __name__ == "__main__":
 
     # Run any single case
     time.sleep(2)
-    testCases[11](skt, nodes)
+    testCases[14](skt, nodes)

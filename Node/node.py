@@ -152,7 +152,7 @@ def append_reply(skt, node: RaftNode, nodes, self_node, sender, success, committ
     elif success == False:
         node.nextIndex[self_index] -= 1
         node.nextIndex[sender_index] -= 1
-            
+                   
 # Convert a node to follower state
 def convert_follower(node: RaftNode):
     node.state = FOLLOWER
@@ -169,10 +169,11 @@ def timeout(node: RaftNode):
     node.electionTimeout = 0
 
 # Send leader information to the controller
-def leader_info(skt, node: RaftNode, self_node):
+def leader_info(skt, node: RaftNode, self_node, sender):
     msg_bytes = create_msg(
         self_node, LEADER_INFO, node.currentTerm, LEADER, node.currentLeader)
-    skt.sendto(msg_bytes, ('rl_server1', 5555))
+    skt.sendto(msg_bytes, (sender, 5555))
+    
 
 def is_leader(node: RaftNode):
     return node.state == LEADER
@@ -216,7 +217,7 @@ def listener(skt, node: RaftNode, nodes, self_node):
                 node.shutdown = True
 
             elif decoded_msg['request'] == LEADER_INFO:
-                leader_info(skt, node, self_node)
+                leader_info(skt, node, self_node, decoded_msg['sender_name'])
                 
             elif decoded_msg['request'] == STORE:
                 if is_leader(node):
@@ -227,7 +228,7 @@ def listener(skt, node: RaftNode, nodes, self_node):
                     }
                     node.log.append(new_entry)
                 else:
-                    leader_info(skt, node, self_node)
+                    leader_info(skt, node, self_node, decoded_msg['sender_name'])
 
             elif decoded_msg['request'] == RETRIEVE:
                 if is_leader(node):
@@ -235,7 +236,7 @@ def listener(skt, node: RaftNode, nodes, self_node):
                         decoded_msg['sender_name'], RETRIEVE, node.currentTerm, COMMITED_LOGS, node.log)
                     skt.sendto(msg_bytes, (decoded_msg['sender_name'], 5555))
                 else:
-                    leader_info(skt, node, self_node)
+                    leader_info(skt, node, self_node, decoded_msg['sender_name'])
 
             elif decoded_msg['request'] == APPEND_REPLY:
                 append_reply(
